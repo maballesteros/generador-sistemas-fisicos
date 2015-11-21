@@ -1,0 +1,32 @@
+ /*------------------------------------------------------------------------
+    ¨Que pasa cuando tenemos un cuerpo girando entorno a otro y aparece
+    otro cuerpo de dimensiones similares? ¨Que le pasa a la orbita?
+   ------------------------------------------------------------------------*/
+
+DefEntorno = {
+	       NumBodys      = 3;
+	       Tiempo        = 360;  /* Hay mucho que ver */
+	       IncTemporal   = 0.2;  /* Aunque es de 0.2,
+					deberiamos mejorarla. El motivo
+					queda claro tras ver el movimiento */
+
+	       SpaceDimension = 2;   /* El movimiento se realizara en el
+					plano */
+	       NumCampos      = 2;   /* Null, UnitA */
+
+	       SinInteraccion = No;
+	     }
+
+
+ /*------------------------------------------------------------------------
+    Este es un sitema tipico del que poco se puede contar. Creo que tan solo
+    las condiciones iniciales, lo hacen especialmente interesante para
+    ilustrar como un cuerpo saca a otro de la orbita.
+   ------------------------------------------------------------------------*/
+DefSistema = {
+
+	{ {-5,0},  {0, -0.4}, {Null,UnitA}, {15, 5}  },
+	{ {-50,5}, {0.5,0.1}, {Null,UnitA}, {15, 4}  },
+	{ { 5,0},  {0, 0},    {Null,UnitA}, {1e5, 5} }
+
+	     }

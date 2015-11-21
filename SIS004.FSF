@@ -1,0 +1,31 @@
+ /*------------------------------------------------------------------------
+    Mostramos aqui un sistema solar simplificado: Sol, Tierra, Luna
+   ------------------------------------------------------------------------*/
+
+DefEntorno = {
+	       NumBodys      = 3;    /* Tres particulas */
+
+	       Tiempo        = 160;  /* Tiempo que dura la animacion */
+	       IncTemporal   = 0.1;  /* Incrementos del tiempo */
+
+	       SpaceDimension = 2;   /* El movimiento se realizara en el
+					plano */
+	       NumCampos      = 2;   /* Null, UnitA */
+	       SinInteraccion = No;
+	     }
+
+
+ /*------------------------------------------------------------------------
+    El sistema esta formado por 3 particulas. Aunque pretende mostrar el
+    movimiento debido a fuerzas gravitatorias, realmente estas no aparecen.
+    El motivo es que se puede simular un sistema equivalente de manera mas
+    sencilla usando el campo UnitA y que nos permite situar las particulas
+    a una distancia relativamente corta.
+   ------------------------------------------------------------------------*/
+DefSistema = {
+
+	{ {-10,0}, {0, 0.4},  {Null,UnitA},  {20, 5}   },
+        { {-11,0}, {0,-1.3},  {Null,UnitA},  {1,  0.5} },
+	{ { 5,0},  {0, 0},    {Null,UnitA},  {1e5,5}  }
+
+	     }

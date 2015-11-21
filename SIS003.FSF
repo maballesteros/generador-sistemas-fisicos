@@ -1,0 +1,46 @@
+/*---------------------------------------------------------------------------
+   Esta simulacion representa un choque entre dos cuerpos no puntuales.
+  --------------------------------------------------------------------------*/
+   
+DefEntorno = {
+	       NumBodys      = 8;    /* Cuatro por cada bloque */
+
+	       Tiempo        = 15;   /* Suficiente para ver el choque */
+	       IncTemporal   = 0.05; /* Un choque necesita precision */
+
+	       SpaceDimension = 2;
+	       NumCampos      = 3;   /* Null, UnitR, Elast */
+	     }
+
+
+/*---------------------------------------------------------------------------
+   Pretendemos aqui ver algo tan tipico como un choque elastico. Para ello
+   montamos unos bloques cuadrados formados por 4 particulas cada uno. Cada
+   particula esta conectada mediante muelles a las otras tres de modo que
+   el cuadrado mantenga su forma dentro de lo razonable. Ademas cada
+   particula genera un campo repulsivo unitario. Como consecuencia de esto
+   los cuadrados, en equilibrio respecto a las fuerzas elasticas, comienzan
+   a expandirse, hasta que se ven frenados por las fuerzas elasticas. Se
+   inicia un movimiento oscilatorio de expansion y compresion. Esto se podria
+   interpretar como una cierta energia termica del bloque. Los dos bloques
+   que se definen son exactamente iguales.
+   Cuando comienza la animacion, uno de los bloques se lanza contra el otro.
+   Podemos ver como se cumple la ley de conservacion de la cantidad de
+   movimiento y la ley de conservacion de la energia mecanica.
+  --------------------------------------------------------------------------*/
+
+DefSistema = {
+
+  /* 1er bloque. Este es el bloque incidente */
+  { {-29,0}, {9,0},   {null,unitr,elast}, {1,4,{1,9,1,2,9,1,3,9,1.4142}} },
+  { {-28,0}, {9,0},   {null,unitr,elast}, {1,4,{0,9,1,3,9,1,2,9,1.4142}} },
+  { {-29,1}, {9,0},   {null,unitr,elast}, {1,4,{0,9,1,3,9,1,1,9,1.4142}} },
+  { {-28,1}, {9,0},   {null,unitr,elast}, {1,4,{1,9,1,2,9,1,0,9,1.4142}} },
+
+  /* 2§ bloque, inicialmente en reposo */
+  { { 8,0}, {0,0},   {null,unitr,elast}, {1,4,{5,9,1,6,9,1,7,9,1.4142}} },
+  { { 9,0}, {0,0},   {null,unitr,elast}, {1,4,{4,9,1,7,9,1,6,9,1.4142}} },
+  { { 8,1}, {0,0},   {null,unitr,elast}, {1,4,{4,9,1,7,9,1,5,9,1.4142}} },
+  { { 9,1}, {0,0},   {null,unitr,elast}, {1,4,{5,9,1,6,9,1,4,9,1.4142}} }
+ 
+	     }

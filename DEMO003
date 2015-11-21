@@ -1,0 +1,11 @@
+locate 5,10
+print Esta simulacion representa un choque entre dos cuerpos
+centrox 150
+escala 7
+movsis
+wait 3000
+locate 7,10
+print Veamosla de nuevo
+movsis
+quit
+

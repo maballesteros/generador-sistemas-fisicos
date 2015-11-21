@@ -1,0 +1,52 @@
+/*------------------------------------------------------------------------
+   Este sistema representa una 'cuerda' en el espacio.
+   Disfruta de la simulacion si tienes un ordenador rapido (yo no, buuaaa!!)
+   Y si no, tambien.
+  ------------------------------------------------------------------------*/
+DefEntorno = {
+	       NumBodys      = 21;
+
+	       Tiempo        = 50;
+	       IncTemporal   = 0.1;
+
+	       SpaceDimension = 3;
+	       NumCampos      = 3;
+	     }
+
+/*------------------------------------------------------------------------
+   La definicion esta traspasada directamente de SIS005, pero ampliada al
+   espacio. Vamos a ver los cambios. Dejamos un extremo libre. Para ello,
+   le damos una masa al extremo igual a las demas particulas. El extremo
+   que movemos lo hacemos girar, con un movimiento casi circular, en un
+   plano perpendicular a la posicion inicial de la cuerda. Podremos ver
+   entonces como la cuerda se recoge en un tirabuzon y el coleteo de la
+   cuerda cuando la onda inicial llega al extremo opuesto. A mi me encanta
+   esta simulacion. Espero que tambien os guste a vosotros. Eso si, creo
+   que me quede cerca de los limites de memoria (esto se mejorara en
+   proximas versiones)
+  ------------------------------------------------------------------------*/
+DefSistema = {
+
+       { {-10,7,0},  {0,0,0},   {null,elast,null}, {1,{1,3,1},0} },
+       { {-9,7,0},   {0,0,0},   {null,elast,null}, {1,{ 0,3,1,2,3,1},0} },
+       { {-8,7,0},   {0,0,0},   {null,elast,null}, {1,{ 1,3,1,3,3,1},0} },
+       { {-7,7,0},   {0,0,0},   {null,elast,null}, {1,{ 2,3,1,4,3,1},0} },
+       { {-6,7,0},   {0,0,0},   {null,elast,null}, {1,{ 3,3,1,5,3,1},0} },
+       { {-5,7,0},   {0,0,0},   {null,elast,null}, {1,{ 4,3,1,6,3,1},0} },
+       { {-4,7,0},   {0,0,0},   {null,elast,null}, {1,{ 5,3,1,7,3,1},0} },
+       { {-3,7,0},   {0,0,0},   {null,elast,null}, {1,{ 6,3,1,8,3,1},0} },
+       { {-2,7,0},   {0,0,0},   {null,elast,null}, {1,{ 7,3,1,9,3,1},0} },
+       { {-1,7,0},   {0,0,0},   {null,elast,null}, {1,{ 8,3,1,10,3,1},0} },
+       { { 0,7,0},   {0,0,0},   {null,elast,null}, {1,{ 9,3,1,11,3,1},0} },
+       { { 1,7,0},   {0,0,0},   {null,elast,null}, {1,{10,3,1,12,3,1},0} },
+       { { 2,7,0},   {0,0,0},   {null,elast,null}, {1,{11,3,1,13,3,1},0} },
+       { { 3,7,0},   {0,0,0},   {null,elast,null}, {1,{12,3,1,14,3,1},0} },
+       { { 4,7,0},   {0,0,0},   {null,elast,null}, {1,{13,3,1,15,3,1},0} },
+       { { 5,7,0},   {0,0,0},   {null,elast,null}, {1,{14,3,1,16,3,1},0} },
+       { { 6,7,0},   {0,0,0},   {null,elast,null}, {1,{15,3,1,17,3,1},0} },
+       { { 7,7,0},   {0,0,0},   {null,elast,null}, {1,{16,3,1,18,3,1},0} },
+       { { 8,7,0},   {0,0,0},   {null,elast,null}, {1,{17,3,1,19,3,1},0} },
+       { { 9,7,0},   {0,0,0.7}, {null,elast,unita}, {5,{0,0,0},5} },
+       { { 9,0,0},  {0,0,0},   {null,null,unita}, {1e5,{0,0,0},5} }
+
+	     }

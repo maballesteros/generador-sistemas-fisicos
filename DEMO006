@@ -1,0 +1,17 @@
+color 6
+locate 3,5
+print Como se altera la orbita de un planeta cuando
+locate 4,5
+print pasa un cuerpo de masa parecida
+escala 7
+movsis
+color 5
+locate 5,5
+print Podemos ver las orbitas
+marca 5
+movsis
+locate 6,5
+print y como las recorren
+movsis
+quit
+

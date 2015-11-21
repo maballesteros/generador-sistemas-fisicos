@@ -1,0 +1,83 @@
+/*-------------------------------------------------------------------------
+   Este sistema representa un modelo de 'cuerda ideal' en el plano con
+   movimiento vibratorio forzado. Muy ilustrativo para las fuerzas elasticas
+  -------------------------------------------------------------------------*/
+DefEntorno = {
+	       NumBodys      = 22;    /* Se necesitan muchas particulas */
+
+	       Tiempo        = 60;
+	       IncTemporal   = 0.2;
+
+	       SpaceDimension = 2;
+	       NumCampos      = 2;
+	     }
+
+/*-------------------------------------------------------------------------
+   El modelo de cuerda es el estandard: particulas de igual masa (cuerda
+   homogenea) unidas mediante muelles de la misma constante elastica. Esta
+   cuerda en particular esta formada por 19 particulas separadas una
+   distancia de 1 unidad.
+   Para este ejemplo he fijado el extremo izquierdo. Esto es facil de hacer.
+   Basta tan solo con aumentar su masa hasta hacerla muy pesada restecto a
+   las otras.
+   Cada particula (excepto los extremos) experimenta las fuerzas elasticas
+   debidas a los muelles que las conectan con las particulas adyacentes.
+   El objetivo que tenia al escribir este sistema era someter a una cuerda
+   a un movimiento forzado. Con esto podria ver las limitaciones del modelo.
+   Sin embargo no se me ocurria como conseguir un oscilador que moviera a
+   la cuerda pero que no se frenara debido a la misma. Finalmente encontre
+   una manera. Creo que es una buena solucion, pero si alguien encuentra
+   otra, le agradeceria me lo cuente.
+   El oscilador esta formado por 3 particulas dispuestas en linea. Las dos
+   mas alejadas son muy pesadas frente a la del medio, de manera que no se
+   muevan aunque la otra lo haga. Las tres estan unidas por muelles iguales.
+   La particula central se lanza contra una de las otras y se inicia un
+   movimiento periodico. Ya tenemos el oscilador.
+   Con el oscilador construido solo quedaba acoplarlo al extremo libre de la
+   cuerda. El problema es que esto frenaria al oscilador y el movimiento no
+   seria forzado. Para solucionarlo (y esto es lo que no se me ocurria) lo
+   que hice fue acoplar el extremo a la particula movil del oscilador, pero
+   no al contrario. Esto es, defino el extremo (particula 18) como una
+   particula que experimenta fuerzas elasticas de la 17 y de la 19(oscilador)
+	 { { 8,0.7},{0,0},   {null,elast}, {1,{17,3,1,19,3,1}} }
+   pero la particula 19, particula movil del oscilador, no la conecto a la
+   18:
+	 { { 9,1.5},{0,0.2}, {null,elast}, {1,{20,0.1,2,21,0.1,2}} }
+   De este modo tenemos un oscilador completamente aislado del resto de las
+   particulas, y una cuerda acoplada a este generador de energia.
+
+   Las posibilidades que ofrece este sistema son muchas. Cosas interesantes
+   (para mi) que se podrian simular:
+		- Cuerda libre por el otro extremo. Sobre esto, SIS007 hace
+		  algo parecido en el espacio.
+		- Cuerda no homogenea. ¨Que pasa si la masa no se distribuye
+		  de forma uniforme en toda la cuerda?
+		- Mejorar el modelo. Una idea que se me ocurre es aumentar
+		  la relacion longitud de onda/distancia entre particulas.
+   Seguro que hay muchas mas. Juega con ellas.
+  -------------------------------------------------------------------------*/
+DefSistema = {
+	       { {-10,0},  {0,0},  {null,elast}, {1e5,{1,3,1}} },
+	       { {-9,0},  {0,0},   {null,elast}, {1,{ 0,3,1,2,3,1}} },
+	       { {-8,0},  {0,0},   {null,elast}, {1,{ 1,3,1,3,3,1}} },
+	       { {-7,0},  {0,0},   {null,elast}, {1,{ 2,3,1,4,3,1}} },
+	       { {-6,0},  {0,0},   {null,elast}, {1,{ 3,3,1,5,3,1}} },
+	       { {-5,0},  {0,0},   {null,elast}, {1,{ 4,3,1,6,3,1}} },
+	       { {-4,0},  {0,0},   {null,elast}, {1,{ 5,3,1,7,3,1}} },
+	       { {-3,0},  {0,0},   {null,elast}, {1,{ 6,3,1,8,3,1}} },
+	       { {-2,0},  {0,0},   {null,elast}, {1,{ 7,3,1,9,3,1}} },
+	       { {-1,0},  {0,0},   {null,elast}, {1,{ 8,3,1,10,3,1}} },
+	       { { 0,0},  {0,0},   {null,elast}, {1,{ 9,3,1,11,3,1}} },
+	       { { 1,0},  {0,0},   {null,elast}, {1,{10,3,1,12,3,1}} },
+	       { { 2,0},  {0,0},   {null,elast}, {1,{11,3,1,13,3,1}} },
+	       { { 3,0},  {0,0},   {null,elast}, {1,{12,3,1,14,3,1}} },
+	       { { 4,0},  {0,0},   {null,elast}, {1,{13,3,1,15,3,1}} },
+	       { { 5,0},  {0,0},   {null,elast}, {1,{14,3,1,16,3,1}} },
+	       { { 6,0},  {0,0},   {null,elast}, {1,{15,3,1,17,3,1}} },
+	       { { 7,0.3},{0,0},   {null,elast}, {1,{16,3,1,18,3,1}} },
+	       { { 8,0.7},{0,0},   {null,elast}, {1,{17,3,1,19,3,1}} },
+	       { { 9,1.5},{0,0.2}, {null,elast}, {1,{20,0.1,2,21,0.1,2}} },
+	       { { 9,2},  {0,0},   {null,elast}, {1e5,{19,3,1}} },
+	       { { 9,-2}, {0,0},   {null,elast}, {1e5,{19,3,1}} }
+
+	     }

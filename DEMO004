@@ -1,0 +1,13 @@
+color 6
+locate 21,5
+print Movimiento tipico de tres cuerpos: Sol, Tierra, Luna
+centrox 170
+movsis
+color 5
+locate 22,5
+print Podemos ver la orbita cicloidal de la luna.
+marca 1
+movsis
+wait 2500
+quit
+

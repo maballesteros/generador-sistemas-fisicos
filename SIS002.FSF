@@ -1,0 +1,66 @@
+ /*------------------------------------------------------------------------
+   Este ejemplo muestra el comportamiento basico de las fuerzas elasticas.
+   ------------------------------------------------------------------------*/
+
+DefEntorno = {
+	       NumBodys      = 7;
+
+	       Tiempo        = 50;
+	       IncTemporal   = 0.1;
+
+	       SpaceDimension = 2;
+	       NumCampos      = 3;
+
+	       SinInteraccion = No;
+	     }
+
+
+ /*------------------------------------------------------------------------
+    Para definir las paredes uso un total de 6 particulas (3 por pared). La
+    pared consta de tres particulas unidas por muelles de manera que las mas
+    pesadas (y dan la 'solidez' a la pared) estan en los extremos. En el
+    centro queda una particula de poca masa y que genera (al tiempo que es
+    sensible) un campo unitario repulsivo.
+    Las dos paredes son completemente iguales. Algunos preferiran llamar a
+    las paredes 'bandas elasticas' ya que se comportan como estas.
+    Para completar el sistema, una masa similar a las centrales de las
+    paredes se lanza contra una de ellas. Para que se produzca el choque,
+    genera un campo unitario repulsivo.
+    Como se aprecia en la definicion del sistema, prescindimos de las
+    fuerzas gravitatorias.
+   ------------------------------------------------------------------------
+    NOTA: Para definir una fuerza elastica se procede como sigue.
+	  - Se define un campo como 'elast'
+	  - En la posicion reservada a la magnitud sensible se escribe
+	    lo siguiente:
+	       {part.a la que esta atada,cte elastica,posicion de eq.}
+	  Veamos un ejemplo con la particula 0 de este sistema en concreto:
+	  {{-15, 1}, {0,0}, {Null,Elast,Null},  {1e9, {1,3,1},0}}
+	  Las magnitudes sensibles se definen en:
+			{1e9, {1,3,1},0}
+	  Como el campo elastico lo hemos puesto en la posicion 2, ponemos
+	  alli:
+			{1,3,1}
+	  Esto quiere decir que: la particula 0 (que estamos definiendo),
+	  experimentara una fuerza elastica de cte 3, cuando se separe de
+	  la particula 1 una distancia de la posicion de eq. que damos como 1
+	  Si quisieramos que la posicion de eq. fuera 2, escribiriamos:
+			{1,3,2}
+   ------------------------------------------------------------------------*/
+DefSistema = {
+
+	/* Particulas 0 a 2 */
+	{ {-15, 1}, {0,0}, {Null,Elast,Null},  {1e9, {1,3,1},0}         },
+	{ {-15, 0}, {0,0}, {Null,Elast,UnitR}, {5,   {0,3,1,2,3,1}, 3}  },
+	{ {-15,-1}, {0,0}, {Null,Elast,Null},  {1e9, {1,3,1},0}         },
+
+	/* Particulas 3 a 5 */
+	{ {15, 1},  {0,0}, {Null,Elast,Null},  {1e9, {4,3,1},0}         },
+	{ {15, 0},  {0,0}, {Null,Elast,UnitR}, {5,   {3,3,1,5,3,1}, 3}  },
+	{ {15,-1},  {0,0}, {Null,Elast,Null},  {1e9, {4,3,1},0}         },
+        
+	/* Particula 6 */
+	{ { 0, 0},  {2,0}, {Null,Null,UnitR},   {5,  {0,0,0}, 1}       }
+
+
+	     }

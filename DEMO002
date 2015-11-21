@@ -1,0 +1,10 @@
+locate 5,10 
+print Una pelota, dos paredes, y choques elasticos
+movsis
+wait 1000
+locate 6,10
+print Veamoslo de nuevo
+movsis
+wait 2000
+quit
+

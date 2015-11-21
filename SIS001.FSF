@@ -1,0 +1,58 @@
+ /*------------------------------------------------------------------------
+    Este sistema representa a dos particulas de masas iguales que generan
+    un campo atractivo y que ven perturbado su movimiento por la llegada de
+    otro cuerpo que incide perpendicularmente al plano de movimiento.
+   ------------------------------------------------------------------------*/
+
+DefEntorno = {
+	       NumBodys      = 3;    /* Tres particulas */
+
+	       Tiempo        = 75;   /* Tiempo que dura la animacion */
+	       IncTemporal   = 0.1;  /* Incrementos del tiempo
+					Determina la suavidad y precision
+					del movimiento */
+
+	       SpaceDimension = 3;   /* El movimiento se realizara en el
+					espacio */
+	       NumCampos      = 2;   /* Solo intervendran 2 campos. El
+					primero de todos debe ser siempre
+					el gravitatorio o el campo nulo.
+					En cualquier caso, la magnitud
+					sensible de estos casos sera la
+					masa inercial. La diferencia entre
+					el campo nulo y el gravitatorio es
+					que si el campo es nulo, tendra masa
+					inercial, pero no gravitatoria. */
+
+	       SinInteraccion = No;  /* Todas las particulas interaccionan
+					entre si de forma normal (ley de
+					accion reaccion */
+	     }
+
+
+ /*------------------------------------------------------------------------
+   Aqui definimos el sistema fisico. Esta formado por tres particulas. Dos
+   de ellas, de igual masa, comienzan girando entorno a su centro de masas.
+   La tercera, de masa menor, incide perpendicularmente al plano de giro de
+   las otras aunque ligeramente desplazada en el eje x, por lo que
+   interaciona mas con una de las particulas y sale del plano ligeramente
+   desviada.
+   Los campos que intervienen son el nulo y el unitario atractivo. Para
+   hallar las ecuaciones del movimiento, es necesario conocer la masa de la
+   particula, por esto siempre ponemos la masa como primer magnitud sensible.
+   En este caso consideramos que no es necesario tener en cuenta las
+   aceleraciones debidas a la gravedad, por lo que prescindimos de ellas
+   y anulamos (Null) el campo gravitatorio para todas las particulas. El
+   campo que realmente determinara los movimientos sera el unitario atractivo
+   que hacemos intenso para las particulas de masas iguales y menor para la
+   tercera. Esto lo hacemos con el fin de que no se deteriore demasiado las
+   orbitas de las otras dos. Sin embargo, y dada su peque¤a masa, la
+   trayectoria de esta si queda visiblemente alterada.
+   ------------------------------------------------------------------------*/
+DefSistema = {
+
+	{ {-5,0,0},   {0, 0.2,0},  {Null,UnitA}, {15, 5} },
+	{ { 2,0,-30}, {0, 0,  1},  {Null,UnitA}, {1, 0.7} },
+	{ { 5,0,0},   {0,-0.2,0},  {Null,UnitA}, {15, 5} }
+
+	     }

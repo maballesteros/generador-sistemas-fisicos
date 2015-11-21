@@ -1,0 +1,27 @@
+locate 2,3
+print Dos particulas de masas iguales
+locate 3,3
+print que giran entorno a su c.m.
+locate 4,3
+print y se ven perturbadas por una tercera
+escala 15
+color 14
+marca 10
+ejes 10
+marca 0
+movsis
+locate 5,3
+print Podemos ver las orbitas
+marca 1
+movsis
+wait 3000
+cls
+locate 3,3
+print Y tambien podemos cambiar el punto de vista
+marca 0
+ojoy 50
+marca 10
+ejes 10
+marca 1
+movsis
+quit

@@ -1,0 +1,18 @@
+locate 2,3
+print Movimiento de una cuerda en el espacio.
+locate 3,3
+print Tiene un extremo libre y el otro con un
+locate 4,3
+print movimiento circular forzado.
+escala 15
+color 14
+marca 10
+ejes 10
+marca 0
+movsis
+locate 5,3
+print Podemos ver las trayectorias de las particulas
+marca 1
+movsis
+wait 4000
+quit

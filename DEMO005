@@ -1,0 +1,22 @@
+locate 10,3
+print Esta demo muestra muchas de las posibilidades del programa.
+locate 11,3
+print Consiste en la animacion de un modelo matematico para una
+locate 12,3
+print cuerda ideal (no pierde energia) a la que se hace vibrar
+locate 13,3
+print por un extremo. La animacion nos permite ver que cuando las
+locate 14,3
+print amplitudes son muy grandes, el modelo de cuerda que habiamos
+locate 15,3
+print propuesto ya no es valido. Vamos ahora a verla
+wait 15000
+cls
+movsis
+locate 5,5
+print Vamos a ampliar la escala.
+escala 15
+movsis
+wait 2000
+quit
+
